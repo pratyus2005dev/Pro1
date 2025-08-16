@@ -1,0 +1,23 @@
+{
+  "Guidewire_Policy::policy_id": ["InsureNow_Contract::contract_key"],
+  "Guidewire_Policy::policy_number": ["InsureNow_Contract::contract_ref"],
+  "Guidewire_Policy::customer_id": ["InsureNow_Contract::client_key"],
+  "Guidewire_Policy::start_date": ["InsureNow_Contract::cover_start"],
+  "Guidewire_Policy::end_date": ["InsureNow_Contract::cover_end"],
+  "Guidewire_Policy::status": ["InsureNow_Contract::contract_state"],
+  "Guidewire_Policy::premium_amount": ["InsureNow_Contract::gross_premium"],
+
+  "Guidewire_Customer::customer_id": ["InsureNow_Client::client_key"],
+  "Guidewire_Customer::first_name": ["InsureNow_Client::given_name"],
+  "Guidewire_Customer::last_name": ["InsureNow_Client::surname"],
+  "Guidewire_Customer::date_of_birth": ["InsureNow_Client::dob"],
+  "Guidewire_Customer::email": ["InsureNow_Client::contact_email"],
+  "Guidewire_Customer::phone": ["InsureNow_Client::contact_number"],
+
+  "Guidewire_Claim::claim_id": ["InsureNow_Incident::incident_key"],
+  "Guidewire_Claim::policy_id": ["InsureNow_Incident::contract_key"],
+  "Guidewire_Claim::claim_number": ["InsureNow_Incident::incident_ref"],
+  "Guidewire_Claim::date_of_loss": ["InsureNow_Incident::loss_date"],
+  "Guidewire_Claim::claim_status": ["InsureNow_Incident::incident_state"],
+  "Guidewire_Claim::claim_amount": ["InsureNow_Incident::estimated_loss"]
+}

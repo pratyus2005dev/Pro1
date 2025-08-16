@@ -1,0 +1,37 @@
+# Paths (edit freely when you replace datasets)
+ddl_path: ddl/DDL.sql
+
+source:            # Guidewire CSVs
+  root: data/guidewire
+  files:
+    Guidewire_Policy: Guidewire_Policy.csv
+    Guidewire_Customer: Guidewire_Customer.csv
+    Guidewire_Claim: Guidewire_Claim.csv
+
+target:            # InsureNow CSVs
+  root: data/insurenow
+  files:
+    InsureNow_Contract: InsureNow_Contract.csv
+    InsureNow_Client: InsureNow_Client.csv
+    InsureNow_Incident: InsureNow_Incident.csv
+
+# Canonical table alignment from the DDL (can be edited/extended)
+table_pairs:
+  - [Guidewire_Policy, InsureNow_Contract]
+  - [Guidewire_Customer, InsureNow_Client]
+  - [Guidewire_Claim, InsureNow_Incident]
+
+# Training
+train:
+  model_out: models/matcher.pkl
+  negative_ratio: 4       # negatives per positive
+  test_size: 0.2
+  random_state: 42
+
+# Prediction
+predict:
+  model_in: models/matcher.pkl
+  top_k: 3
+  threshold: 0.45         # abstain if below this score
+  out_csv: outputs/mapping_suggestions.csv
+  out_json: outputs/mapping_suggestions.json
