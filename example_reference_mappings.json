@@ -1,0 +1,442 @@
+[
+  {
+    "source_table": "customers",
+    "source_column": "customer_id",
+    "target_table": "client_profiles",
+    "target_column": "client_id",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Primary key mapping"
+  },
+  {
+    "source_table": "customers",
+    "source_column": "first_name",
+    "target_table": "client_profiles",
+    "target_column": "given_name",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "First name mapping"
+  },
+  {
+    "source_table": "customers",
+    "source_column": "last_name",
+    "target_table": "client_profiles",
+    "target_column": "family_name",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Last name mapping"
+  },
+  {
+    "source_table": "customers",
+    "source_column": "email_address",
+    "target_table": "client_profiles",
+    "target_column": "email_addr",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Email mapping"
+  },
+  {
+    "source_table": "customers",
+    "source_column": "phone_number",
+    "target_table": "client_profiles",
+    "target_column": "mobile_phone",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "medium",
+    "notes": "Phone number mapping"
+  },
+  {
+    "source_table": "customers",
+    "source_column": "date_of_birth",
+    "target_table": "client_profiles",
+    "target_column": "birth_date",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Birth date mapping"
+  },
+  {
+    "source_table": "customers",
+    "source_column": "is_active",
+    "target_table": "client_profiles",
+    "target_column": "active_status",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Active status mapping"
+  },
+  {
+    "source_table": "customers",
+    "source_column": "customer_type",
+    "target_table": "client_profiles",
+    "target_column": "client_tier",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "medium",
+    "notes": "Customer type mapping"
+  },
+  {
+    "source_table": "products",
+    "source_column": "product_id",
+    "target_table": "item_catalog",
+    "target_column": "item_id",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Product ID mapping"
+  },
+  {
+    "source_table": "products",
+    "source_column": "product_name",
+    "target_table": "item_catalog",
+    "target_column": "item_title",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Product name mapping"
+  },
+  {
+    "source_table": "products",
+    "source_column": "product_description",
+    "target_table": "item_catalog",
+    "target_column": "item_details",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Product description mapping"
+  },
+  {
+    "source_table": "products",
+    "source_column": "unit_price",
+    "target_table": "item_catalog",
+    "target_column": "selling_price",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Price mapping"
+  },
+  {
+    "source_table": "products",
+    "source_column": "stock_quantity",
+    "target_table": "item_catalog",
+    "target_column": "inventory_count",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Stock quantity mapping"
+  },
+  {
+    "source_table": "products",
+    "source_column": "brand_name",
+    "target_table": "item_catalog",
+    "target_column": "manufacturer",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "medium",
+    "notes": "Brand/manufacturer mapping"
+  },
+  {
+    "source_table": "products",
+    "source_column": "is_discontinued",
+    "target_table": "item_catalog",
+    "target_column": "discontinued_flag",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Discontinued flag mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "order_id",
+    "target_table": "purchase_orders",
+    "target_column": "purchase_id",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Order ID mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "customer_id",
+    "target_table": "purchase_orders",
+    "target_column": "client_ref",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Customer reference mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "order_date",
+    "target_table": "purchase_orders",
+    "target_column": "purchase_datetime",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Order date mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "total_amount",
+    "target_table": "purchase_orders",
+    "target_column": "gross_amount",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Total amount mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "order_status",
+    "target_table": "purchase_orders",
+    "target_column": "current_status",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Order status mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "payment_method",
+    "target_table": "purchase_orders",
+    "target_column": "payment_type",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Payment method mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "discount_amount",
+    "target_table": "purchase_orders",
+    "target_column": "discount_value",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Discount amount mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "tax_amount",
+    "target_table": "purchase_orders",
+    "target_column": "tax_value",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Tax amount mapping"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "notes",
+    "target_table": "purchase_orders",
+    "target_column": "special_instructions",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "medium",
+    "notes": "Notes/instructions mapping"
+  },
+  {
+    "source_table": "order_items",
+    "source_column": "order_item_id",
+    "target_table": "order_line_items",
+    "target_column": "line_item_id",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Order item ID mapping"
+  },
+  {
+    "source_table": "order_items",
+    "source_column": "order_id",
+    "target_table": "order_line_items",
+    "target_column": "purchase_ref",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Order reference mapping"
+  },
+  {
+    "source_table": "order_items",
+    "source_column": "product_id",
+    "target_table": "order_line_items",
+    "target_column": "item_ref",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Product reference mapping"
+  },
+  {
+    "source_table": "order_items",
+    "source_column": "quantity",
+    "target_table": "order_line_items",
+    "target_column": "ordered_quantity",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Quantity mapping"
+  },
+  {
+    "source_table": "order_items",
+    "source_column": "unit_price",
+    "target_table": "order_line_items",
+    "target_column": "item_price",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Unit price mapping"
+  },
+  {
+    "source_table": "order_items",
+    "source_column": "line_total",
+    "target_table": "order_line_items",
+    "target_column": "subtotal",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Line total mapping"
+  },
+  {
+    "source_table": "order_items",
+    "source_column": "discount_percent",
+    "target_table": "order_line_items",
+    "target_column": "discount_rate",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Discount rate mapping"
+  },
+  {
+    "source_table": "categories",
+    "source_column": "category_id",
+    "target_table": "product_categories",
+    "target_column": "cat_id",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Category ID mapping"
+  },
+  {
+    "source_table": "categories",
+    "source_column": "category_name",
+    "target_table": "product_categories",
+    "target_column": "cat_name",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Category name mapping"
+  },
+  {
+    "source_table": "categories",
+    "source_column": "parent_category_id",
+    "target_table": "product_categories",
+    "target_column": "parent_cat_id",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Parent category mapping"
+  },
+  {
+    "source_table": "categories",
+    "source_column": "description",
+    "target_table": "product_categories",
+    "target_column": "cat_description",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Category description mapping"
+  },
+  {
+    "source_table": "categories",
+    "source_column": "is_active",
+    "target_table": "product_categories",
+    "target_column": "active_flag",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Active flag mapping"
+  },
+  {
+    "source_table": "user_accounts",
+    "source_column": "user_id",
+    "target_table": "system_users",
+    "target_column": "sys_user_id",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "User ID mapping"
+  },
+  {
+    "source_table": "user_accounts",
+    "source_column": "username",
+    "target_table": "system_users",
+    "target_column": "login_name",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Username mapping"
+  },
+  {
+    "source_table": "user_accounts",
+    "source_column": "password_hash",
+    "target_table": "system_users",
+    "target_column": "pwd_hash",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Password hash mapping"
+  },
+  {
+    "source_table": "user_accounts",
+    "source_column": "email",
+    "target_table": "system_users",
+    "target_column": "contact_email",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Email mapping"
+  },
+  {
+    "source_table": "user_accounts",
+    "source_column": "full_name",
+    "target_table": "system_users",
+    "target_column": "display_name",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Full name mapping"
+  },
+  {
+    "source_table": "user_accounts",
+    "source_column": "role_type",
+    "target_table": "system_users",
+    "target_column": "user_role",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Role mapping"
+  },
+  {
+    "source_table": "user_accounts",
+    "source_column": "last_login",
+    "target_table": "system_users",
+    "target_column": "last_access",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Last login mapping"
+  },
+  {
+    "source_table": "user_accounts",
+    "source_column": "account_status",
+    "target_table": "system_users",
+    "target_column": "profile_status",
+    "is_correct": 1,
+    "mapping_type": "1:1",
+    "confidence": "high",
+    "notes": "Account status mapping"
+  }
+]
