@@ -1,0 +1,4 @@
+policy_id,customer_name,policy_type,premium_amount,start_date,status
+POL001,John Doe,Auto,1200.5,2023-01-01,Active
+POL002,Jane Smith,Home,850.75,2023-02-15,Active
+POL003,Bob Johnson,Life,2000.0,2023-03-10,Pending

@@ -1,0 +1,4 @@
+contract_key,client_full_name,insurance_type,annual_premium,effective_date,contract_status
+CON001,John Doe,Automobile,1200.5,2023-01-01,Active
+CON002,Jane Smith,Homeowners,850.75,2023-02-15,Active
+CON003,Bob Johnson,Life,2000.0,2023-03-10,Pending
