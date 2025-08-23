@@ -1,119 +1,65 @@
-# Guidewire → InsureNow Schema Mapping (ML Project)
+### Schema Mapper: Data- and Metadata-driven Column Mapping
 
-This project builds a **machine learning–based schema mapping tool** to automatically align columns between **Guidewire** (source) and **InsureNow** (target).  
-It uses metadata, column name similarity, and statistical profiling of values to suggest the most likely column mappings.
+This tool automates source-to-target schema mapping for data migrations. It:
+- Parses DDL to extract table/column metadata
+- Profiles CSV data for statistical features
+- Engineers fuzzy name and data similarity features
+- Trains ML models (Logistic Regression and Gradient Boosting) and selects the best
+- Scores column pairs and proposes one-to-one, one-to-many, many-to-one, and many-to-many mappings
+- Outputs a CSV with fuzzy name score, ML score, and combined score
 
----
-
-## 🚀 Features
-
-- Parses your **DDL.sql** to understand table structures and valid table pairs.
-- Generates training data automatically using **weak supervision** (seed synonyms in `configs/synonyms.json`).
-- Trains a **classifier (XGBoost or RandomForest)** to predict if a source column matches a target column.
-- Produces **mapping suggestions** with scores + alternate candidates.
-- Easily swap **sample CSVs → real datasets** without changing code (just edit `configs/config.yaml`).
-- Outputs results as both **CSV** and **JSON** for downstream integration.
-
----
-
-## 📂 Project Structure
-
-schema-mapper-ml/
-├─ README.md
-├─ requirements.txt
-├─ ddl/
-│ └─ DDL.sql # schema definition
-├─ configs/
-│ ├─ config.yaml # paths + settings
-│ └─ synonyms.json # seed mappings
-├─ data/
-│ ├─ guidewire/ # Guidewire CSVs
-│ └─ insurenow/ # InsureNow CSVs
-├─ models/
-│ └─ matcher.pkl # trained model
-├─ outputs/
-│ ├─ mapping_suggestions.csv
-│ └─ mapping_suggestions.json
-└─ src/
-├─ config.py
-├─ ddl_parser.py
-├─ data_loader.py
-├─ utils.py
-├─ featurizer.py
-├─ model.py
-├─ train.py
-└─ predict.py
-└─ main.py # CLI entrypoint
-
----
-
-## ⚙️ Installation
-
-### 1. Create environment  
-> Recommended: use a fresh virtual environment so TensorFlow or other libs don’t conflict.
-
+#### Install
 ```bash
-python -m venv venv
-venv\Scripts\activate   # on Windows
-source venv/bin/activate   # on Linux/Mac
-🛠️ Configuration
-configs/config.yaml
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-Defines dataset paths, table pairs, model paths, thresholds, etc.
+#### Inputs
+- Source CSVs: one or more files (headers required)
+- Target CSVs: one or more files (headers required)
+- DDL SQL: one or more files containing CREATE TABLE definitions
+- Reference mapping CSV for training: columns `source_table,source_column,target_table,target_column`
 
-Example:
+#### CLI
+```bash
+python -m schema_mapper.cli --help | cat
+```
 
-source:
-  root: data/guidewire
-  files:
-    Guidewire_Policy: Guidewire_Policy.csv
-target:
-  root: data/insurenow
-  files:
-    InsureNow_Contract: InsureNow_Contract.csv
-table_pairs:
-  - [Guidewire_Policy, InsureNow_Contract]
+Train and map in one step:
+```bash
+python -m schema_mapper.cli auto \
+  --source-files /abs/path/src_*.csv \
+  --target-files /abs/path/tgt_*.csv \
+  --ddl /abs/path/schema.ddl.sql \
+  --reference-mapping /abs/path/reference_mapping.csv \
+  --model-dir /abs/path/model_dir \
+  --output /abs/path/mappings.csv
+```
 
-configs/synonyms.json
+Train only:
+```bash
+python -m schema_mapper.cli train \
+  --source-files /abs/path/src_*.csv \
+  --target-files /abs/path/tgt_*.csv \
+  --ddl /abs/path/schema.ddl.sql \
+  --reference-mapping /abs/path/reference_mapping.csv \
+  --model-dir /abs/path/model_dir
+```
 
-Provides known column mappings (used as positive training labels).
+Map with an existing model:
+```bash
+python -m schema_mapper.cli map \
+  --source-files /abs/path/src_*.csv \
+  --target-files /abs/path/tgt_*.csv \
+  --ddl /abs/path/schema.ddl.sql \
+  --model-dir /abs/path/model_dir \
+  --output /abs/path/mappings.csv
+```
 
-Example:
-
-{
-  "Guidewire_Policy::policy_id": ["InsureNow_Contract::contract_key"],
-  "Guidewire_Customer::first_name": ["InsureNow_Client::given_name"]
-}
-
-🏋️ Training
-
-Run training with your datasets:
-
-python main.py train --config configs/config.yaml
-
-
-This will:
-
-Parse the DDL.
-
-Load CSVs.
-
-Build training pairs (positives from synonyms, negatives auto-generated).
-
-Train the classifier.
-
-Save model to models/matcher.pkl.
-
-🔍 Prediction
-
-Run prediction on new datasets:
-
-python main.py predict --config configs/config.yaml
-
-
-Outputs:
-
-outputs/mapping_suggestions.csv (flat best-match table)
-
-outputs/mapping_suggestions.json (detailed with top-k alternates & scores)
+Output CSV columns:
+- `mapping_type` in {one_to_one, one_to_many, many_to_one, many_to_many}
+- `source_tables`, `source_columns` (semicolon-separated for multiple)
+- `target_tables`, `target_columns`
+- `fuzzy_score`, `ml_score`, `combined_score`
+- `details` (JSON with feature diagnostics)
 
