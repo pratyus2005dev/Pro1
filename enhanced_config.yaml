@@ -1,0 +1,174 @@
+# Enhanced Schema Mapping Configuration
+# This configuration demonstrates the full capabilities of the enhanced system
+
+# Data paths
+ddl_path: sample_ddl.sql
+
+# Source system configuration (Legacy Application)
+source:
+  root: data/source
+  files:
+    customers: customers.csv
+    orders: orders.csv
+    products: products.csv
+    order_items: order_items.csv
+
+# Target system configuration (Modern Application)
+target:
+  root: data/target
+  files:
+    clients: clients.csv
+    transactions: transactions.csv
+    inventory: inventory.csv
+    transaction_items: transaction_items.csv
+
+# Table mapping pairs for training and prediction
+table_pairs:
+  - [customers, clients]
+  - [orders, transactions]
+  - [products, inventory]
+  - [order_items, transaction_items]
+
+# Training configuration
+train:
+  # Model output path
+  model_out: models/enhanced_matcher.pkl
+  
+  # Training parameters
+  negative_ratio: 4          # Number of negative examples per positive
+  test_size: 0.2            # Fraction of data for testing
+  random_state: 42          # Random seed for reproducibility
+  
+  # Advanced training options
+  use_ensemble: true        # Use ensemble of multiple models
+  tune_hyperparameters: false  # Enable hyperparameter tuning (slower)
+  
+  # Model selection parameters
+  cv_folds: 5              # Cross-validation folds
+  ensemble_top_k: 3        # Number of top models for ensemble
+
+# Prediction configuration
+predict:
+  # Model input paths
+  model_in: models/enhanced_matcher.pkl
+  featurizer_in: models/enhanced_matcher_featurizer.pkl
+  
+  # Prediction parameters
+  threshold: 0.5           # Minimum score for mapping acceptance
+  top_k: 3                 # Number of top candidates per source column
+  
+  # Output paths
+  out_csv: outputs/enhanced_mapping_suggestions.csv
+  out_json: outputs/enhanced_mapping_suggestions.json
+  out_detailed_csv: outputs/detailed_mapping_analysis.csv
+
+# Feature engineering configuration
+features:
+  # Fuzzy matching weights
+  fuzzy_weights:
+    levenshtein_ratio: 0.25
+    partial_ratio: 0.20
+    token_sort_ratio: 0.20
+    token_set_ratio: 0.15
+    jaro_winkler: 0.10
+    sequence_ratio: 0.05
+    token_jaccard: 0.05
+  
+  # Score combination weights
+  score_weights:
+    ml_score: 0.7
+    fuzzy_score: 0.3
+  
+  # Quality thresholds
+  quality_thresholds:
+    high_confidence: 0.8
+    good_match: 0.7
+    needs_review: 0.5
+
+# Mapping optimization configuration
+mapping:
+  # One-to-many configuration
+  one_to_many:
+    max_targets_per_source: 3
+  
+  # Many-to-one configuration
+  many_to_one:
+    max_sources_per_target: 3
+  
+  # Optimization parameters
+  optimization:
+    use_hungarian: true     # Use Hungarian algorithm for 1:1 mappings
+    global_optimization: true  # Optimize across all table pairs
+
+# Output configuration
+output:
+  # Directory structure
+  base_dir: outputs
+  models_dir: models
+  reports_dir: reports
+  analysis_dir: analysis
+  
+  # Report generation
+  generate_html_report: true
+  generate_quality_analysis: true
+  generate_summary_stats: true
+  
+  # Export formats
+  export_formats:
+    - csv
+    - json
+    - html
+
+# Performance configuration
+performance:
+  # Memory management
+  max_memory_usage: "4GB"
+  batch_size: 1000
+  
+  # Parallel processing
+  n_jobs: -1              # Use all available cores
+  parallel_processing: true
+  
+  # Caching
+  enable_caching: true
+  cache_dir: cache
+
+# Logging configuration
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: logs/schema_mapper.log
+  
+  # Performance logging
+  log_performance: true
+  log_memory_usage: true
+
+# Validation configuration
+validation:
+  # Data validation
+  validate_data_types: true
+  validate_constraints: true
+  validate_references: true
+  
+  # Mapping validation
+  validate_mappings: true
+  check_duplicates: true
+  verify_constraints: true
+
+# Advanced features
+advanced:
+  # Semantic analysis
+  enable_semantic_analysis: true
+  semantic_model: "tfidf"
+  
+  # Metadata analysis
+  enable_metadata_analysis: true
+  parse_ddl_constraints: true
+  
+  # Data profiling
+  enable_data_profiling: true
+  profile_sample_size: 1000
+  
+  # Custom features
+  enable_custom_features: false
+  custom_feature_path: null
